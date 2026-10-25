@@ -1,0 +1,17 @@
+{
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.15.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.15.0",
+  "type": "module",
+  "version": "1.0.0",
+  "name": "webdev-01-node",
+  "private": true,
+  "scripts": {
+    "tcp": "node --env-file=.env src/server.ts"
+  }
+}

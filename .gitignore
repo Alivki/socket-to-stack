@@ -1,0 +1,97 @@
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.*
+vendor/
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Private keys and local TLS certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+certs/
+
+# Local databases and application data
+*.db
+*.sqlite
+*.sqlite3
+data.json
+
+# Build output
+dist/
+build/
+target/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+coverage/
+out/
+*.tgz
+*.tsbuildinfo
+
+# Caches
+.cache/
+.eslintcache
+.pnpm-store/
+
+# Logs and debugging
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+bun-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+*.lcov
+
+# Editors and IDEs
+.vscode/
+.idea/
+.fleet/
+.zed/
+.cursor/
+.windsurf/
+.history/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+*.iml
+*.swp
+*.swo
+*~
+\#*\#
+.\#*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.DocumentRevisions-V100
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+Icon
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

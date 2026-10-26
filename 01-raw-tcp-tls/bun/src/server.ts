@@ -2,7 +2,7 @@ import type { Socket, SocketHandler } from 'bun';
 import { parseRequest, handle, serialize, text } from './http.ts';
 
 const host: string = process.env.HOST ?? '127.0.0.1';
-const port: number = Number(process.env.TLS_PORT ?? 3444);
+const port: number = Number(process.env.TLS_PORT ?? 3016);
 
 const MAX_HEADER_BYTES = 16 * 1024;
 const IDLE_TIMEOUT_S = 5;

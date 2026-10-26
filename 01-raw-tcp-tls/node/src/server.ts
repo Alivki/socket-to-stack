@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { handleHttpSocket } from './http-handler.ts';
 
 const host: string = process.env.HOST ?? '127.0.0.1';
-const port: number = Number(process.env.TLS_PORT ?? 3443);
+const port: number = Number(process.env.TLS_PORT ?? 3015);
 
 const server: tls.Server = tls.createServer(
   {

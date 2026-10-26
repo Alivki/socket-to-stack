@@ -7,7 +7,7 @@ export async function route(req: IncomingMessage, res: ServerResponse): Promise<
     const { pathname } = new URL(req.url ?? '/', 'http://localhost');
 
     if (req.method === 'GET' && pathname.startsWith('/public/')) {
-        return serveStatic(pathname, res);
+        return serveStatic(pathname, req, res);
     }
 
     switch(`${req.method} ${pathname}`) {

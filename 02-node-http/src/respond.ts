@@ -1,5 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -75,7 +76,7 @@ const MIME: Record<string, string> = {
   '.ico': 'image/x-icon',
 };
 
-export async function serveStatic(urlPath: string, res: ServerResponse): Promise<void> {
+export async function serveStatic(urlPath: string, req: IncomingMessage, res: ServerResponse): Promise<void> {
     const filePath = resolve(PUBLIC_DIR, '.' + urlPath.slice('/public'.length));
     
     if (!filePath.startsWith(PUBLIC_DIR)) throw new HttpError(403, 'Forbidden');
@@ -87,7 +88,20 @@ export async function serveStatic(urlPath: string, res: ServerResponse): Promise
         throw new HttpError(404, 'Not Found');
     }
 
+    const etag = `"${createHash('sha1').update(body).digest('base64url')}"`;
+    const cacheHeaders = {
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+        ETag: etag,
+    };
+
+    if (req.headers['if-none-match'] === etag) {
+        res.writeHead(304, cacheHeaders);
+        res.end();
+        return;
+    }
+
     res.writeHead(200, {
+        ...cacheHeaders,
         'Content-Type': MIME[extname(filePath)] ?? 'application/octet-stream',
         'Content-Length': body.length,
     });

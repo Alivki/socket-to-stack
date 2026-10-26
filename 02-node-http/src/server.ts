@@ -1,13 +1,23 @@
 import http from 'node:http';
+import { route } from './router.ts';
+import { sendHtml, HttpError } from './respond.ts';
+import { errorPage } from './render.ts';
 
 const host = process.env.HOST ?? '127.0.0.1';
 const port = Number(process.env.PORT ?? 3020);
 
 const server = http.createServer();
 
-server.on('request', (request, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('hello');
+server.on('request', async (req, res) => {
+    try {
+        await route(req, res);
+    } catch (err) {
+        const status = err instanceof HttpError ? err.status : 500;
+        const message = err instanceof HttpError ? err.message : 'Internal Server Error';
+        if (status === 500) console.error(err);
+        if (!res.headersSent) sendHtml(res, status, errorPage(status, message));
+        else res.end();
+    }
 });
 
 server.listen(port, host, () => {

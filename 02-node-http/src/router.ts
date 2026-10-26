@@ -20,6 +20,7 @@ export async function route(req: IncomingMessage, res: ServerResponse): Promise<
             const url = form.get('url')?.trim() ?? '';
             const note = form.get('note')?.trim() ?? '';
             if (!url) throw new HttpError(400, 'url is required');
+            if (!/^https?:\/\//i.test(url)) throw new HttpError(400, 'url must start with http:// or https://');
             await addLink(url, note);
             return redirect(res, '/');
         }
@@ -31,6 +32,7 @@ export async function route(req: IncomingMessage, res: ServerResponse): Promise<
             return redirect(res, '/');
         }
 
-        default: res.writeHead(404); res.end('Not found'); 
+        default:
+            throw new HttpError(404, 'Not Found');
     }
 }

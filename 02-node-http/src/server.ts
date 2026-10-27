@@ -4,11 +4,12 @@ import { sendHtml, HttpError } from './respond.ts';
 import { errorPage } from './render.ts';
 import { compose } from './middleware/compose.ts';
 import { logger } from './middleware/logger.ts';
+import { securityHeaders } from './middleware/security.ts';
 
 const host = process.env.HOST ?? '127.0.0.1';
 const port = Number(process.env.PORT ?? 3020);
 
-const handler = compose([logger], route);
+const handler = compose([logger, securityHeaders], route);
 
 const server = http.createServer();
 

@@ -4,12 +4,14 @@ import { sendJson, HttpError } from './respond.ts';
 import { compose } from './middleware/compose.ts';
 import { logger } from './middleware/logger.ts';
 import { securityHeaders } from './middleware/security.ts';
+import { cors } from './middleware/cors.ts';
 import { rateLimit } from './middleware/rateLimit.ts';
+import { chaos } from './middleware/chaos.ts';
 
 const host = process.env.HOST ?? '127.0.0.1';
 const port = Number(process.env.PORT ?? 3030)
 
-const handler = compose([logger, securityHeaders, rateLimit], route)
+const handler = compose([logger, securityHeaders, cors, rateLimit, chaos], route)
 
 const server = http.createServer();
 

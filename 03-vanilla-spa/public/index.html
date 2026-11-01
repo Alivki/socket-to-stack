@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stash</title>
+  <link rel="stylesheet" href="/public/style.css">
+  <script type="module" src="/public/app.js"></script>
+</head>
+<body>
+   <main>
+        <h1>Links</h1>
+
+        <form id="add-form" class="add">
+            <input name="url" type="url" placeholder="https://..." required>
+            <input name="note" type="text" placeholder="Note" maxlength="500">
+            <button type="submit">Save</button>
+        </form>
+
+        <p id="message" class="error" hidden></p>
+        <div id="status" class="status" hidden></div>
+        <ul id="links" class="links"></ul>
+   </main> 
+</body>
+</html>

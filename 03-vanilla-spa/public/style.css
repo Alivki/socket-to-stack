@@ -1,0 +1,29 @@
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body { font-family: system-ui, sans-serif; margin: 0; background: #f6f6f4; color: #222; }
+main { max-width: 640px; margin: 3rem auto; padding: 0 1rem; }
+h1 { margin-bottom: 1.5rem; }
+
+.add { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.add input { flex: 1; padding: .5rem; border: 1px solid #ccc; border-radius: 6px; }
+
+button { padding: .5rem .9rem; border: 0; border-radius: 6px; background: #222; color: #fff; cursor: pointer; }
+button:disabled { opacity: .5; cursor: default; }
+
+.links { list-style: none; padding: 0; margin: 0; }
+.links li { background: #fff; padding: 1rem; border-radius: 8px; margin-bottom: .75rem; }
+.links a { word-break: break-all; }
+.links p { margin: .4rem 0 .8rem; color: #555; }
+.links .delete { background: #b33; font-size: .85rem; margin-top: .4rem; }
+
+.status { display: flex; align-items: center; gap: .6rem; margin: 1rem 0; color: #666; }
+.error { color: #b33; }
+.empty { color: #888; }
+
+.spinner {
+  width: 1em; height: 1em;
+  border: 2px solid #ccc; border-top-color: #222; border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

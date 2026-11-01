@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "node --env-file-if-exists=.env --watch src/server.ts",
     "start": "node --env-file-if-exists=.env src/server.ts",
+    "web": "node --env-file-if-exists=.env --watch src/web.ts",
     "typecheck": "tsc"
   },
   "devEngines": {

@@ -11,7 +11,7 @@ export const cors: Middleware = async (req, res, next) => {
     const origin = req.headers.origin;
     const allowed = origin !== undefined && ALLOWED_ORIGINS.has(origin);
 
-    res.setHeader('Vary', 'Origins');
+    res.setHeader('Vary', 'Origin');
 
     if (allowed) {
         res.setHeader('Access-Control-Allow-Origin', origin);
